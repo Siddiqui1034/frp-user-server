@@ -1,5 +1,15 @@
 
- var {regDAO, loginDAO} = require('../dao/customerDAO')
+ var {
+    regDAO, 
+    loginDAO, 
+    getProductsDAO, 
+    getOrdersDAO, 
+    saveOrderDAO, 
+    getCartDAO,
+    saveToCartDAO,
+    deleteCartDAO 
+    } = require('../dao/customerDAO')
+    
  const jwt = require('jsonwebtoken')  // for token at server side
 
 
@@ -13,7 +23,6 @@
 // }
 // return resultLogin;
 // } 
-
 
 // Token creation with jsonwebtoken library which is in server side
 async function  loginService(data){
@@ -43,9 +52,50 @@ async function regService(data){
  return result;
 }
 
+async function getOrdersService(req){
+    const id = req.body.data;
+    const res = await getOrdersDAO(id)
+    return res;
+}
+
+async function saveOrderService(req){
+    const data = req.body.data;   
+   const res = await saveOrderDAO(data)
+   return res;
+}
+
+async function cancelOrderService(req){
+const orderId = req.query.orderId;
+const res = await cancelOrderDAO(orderId)
+return res;
+}
+
+async function getCartService(){
+getCartDAO()
+}
+
+async function saveToCartService(){
+saveToCartDAO()
+}
+
+async function deleteCartService(){
+deleteCartDAO()
+}
+
+async function getProductsService(){
+     const res = await getProductsDAO()
+     return res;
+}
 module.exports = {
     regService,
-    loginService
+    loginService,
+    getOrdersService,
+    saveOrderService,
+    cancelOrderService,
+    getProductsService,
+    getCartService,
+    saveToCartService,
+    deleteCartService
 }
 
 // Token:
