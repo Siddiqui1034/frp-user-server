@@ -3,7 +3,8 @@ var express = require('express')
 const {
     regService, 
     loginService, 
-    getProductsService, 
+    getProductsService,
+    getProductByIdService, 
     saveOrderService,
     cancelOrderService,
     getCartService,
@@ -130,8 +131,6 @@ router.delete("/deleteCart",
     }
 )
 
-
-
 router.get("/getProducts",
     function (req, res, next) {
         try {
@@ -147,6 +146,17 @@ router.get("/getProducts",
 
     })
 
+router.get("/getProductById", function(req, res, next){
+    try{
+        (async ()=>{
+            const result = await getProductByIdService(req)
+            res.send(result);
+        })()
+    }catch(ex){
+        console.error(ex)
+        res.send(ex.message);
+    }
+})
      
 module.exports = router;
 

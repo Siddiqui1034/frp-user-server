@@ -35,6 +35,13 @@ async function getProductsDAO(){
     return result;
 }
 
+async function getProductByIdDAO(id){
+    const db = await getDB()
+    const collection = db.collection("products")
+    const result = await collection.find({_id: ObjectId.createFromHexString(id)}).toArray();
+    return result[0];
+}
+
 async function saveOrderDAO(data){
     const db = await getDB()
     const collection = db.collection("orders")
@@ -77,6 +84,7 @@ module.exports = {
     saveOrderDAO,
     cancelOrderDAO,
     getProductsDAO,
+    getProductByIdDAO,
     getCartDAO,
     saveToCartDAO,
     deleteCartDAO

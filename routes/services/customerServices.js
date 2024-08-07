@@ -2,7 +2,8 @@
  var {
     regDAO, 
     loginDAO, 
-    getProductsDAO, 
+    getProductsDAO,
+    getProductByIdDAO, 
     getOrdersDAO, 
     saveOrderDAO, 
     getCartDAO,
@@ -86,6 +87,13 @@ async function getProductsService(){
      const res = await getProductsDAO()
      return res;
 }
+
+async function getProductByIdService(req){ 
+    console.log(11, req?.query?.id )
+    const res = await getProductByIdDAO(req?.query?.id)
+    return res; 
+}
+
 module.exports = {
     regService,
     loginService,
@@ -93,6 +101,7 @@ module.exports = {
     saveOrderService,
     cancelOrderService,
     getProductsService,
+    getProductByIdService,
     getCartService,
     saveToCartService,
     deleteCartService
