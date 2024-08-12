@@ -35,7 +35,7 @@ router.post("/register",
     }
     catch (exception) {
         console.log(exception)
-        return `customer controller error ${exception.message}`
+        res.send(`customer controller error ${exception.message}`)
     }
 })
 
