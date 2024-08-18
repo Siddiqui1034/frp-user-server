@@ -105,7 +105,7 @@ router.post("/saveToCart",
      function(req, res, next){
         try{
             (async function() {
-                const result = await saveToCartService()
+                const result = await saveToCartService(req)
                 res.send(result)
             })()
         }
